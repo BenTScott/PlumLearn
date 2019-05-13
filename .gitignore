@@ -1,9 +1,8 @@
-﻿################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
-################################################################################
-
-/.vs/PlumLearn/v16
-/PlumLearn.sln
-/PlumLearn/PlumLearn.vcxproj.user
-/PlumLearn/PlumLearn.vcxproj.filters
-/PlumLearn/PlumLearn.vcxproj
+﻿/.vs
+/bin
+/build
+*.sln
+*.user
+*.filters
+*.vcxproj
+*.exe

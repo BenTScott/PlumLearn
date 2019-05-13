@@ -1,0 +1,3 @@
+[submodule "PlumLearn\\vendor\\spdlog"]
+	path = PlumLearn\\vendor\\spdlog
+	url = https://github.com/gabime/spdlog.git
