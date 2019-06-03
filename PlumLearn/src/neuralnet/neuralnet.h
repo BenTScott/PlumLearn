@@ -1,4 +1,5 @@
 #pragma once
+#include <memory>
 #include "activationfunctions.h"
 
 namespace PlumLearn
@@ -25,6 +26,6 @@ namespace PlumLearn
 		void UpdateOnBatch(std::vector<FeatureLabelPair>& training_data, double learning_rate);
 		std::vector<std::shared_ptr<NeuronLayer>> layers;
 		void Feedforward(std::vector<double> features);
-		double dropout_rate = 0;
+		double dropout_rate = 0.0;
 	};
 }

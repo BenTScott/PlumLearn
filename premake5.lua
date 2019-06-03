@@ -25,11 +25,15 @@ project "PlumLearn"
 		"%{prj.name}/src/**.hpp"
 	}
 
+	sysincludedirs
+	{ 
+		"%{prj.name}/vendor/spdlog/include",
+		"%{prj.name}/vendor/eigen/Eigen" 
+	}
+
 	includedirs
 	{
-		"%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include",
-		"%{prj.name}/vendor/eigen/Eigen"
+		"%{prj.name}/src"
 	}
 
 	filter "system:windows"
