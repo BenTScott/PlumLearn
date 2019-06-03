@@ -13,17 +13,32 @@ project "PlumLearn"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("build/" .. outputdir .. "/%{prj.name}")
 
+	defines "PL_INTERNAL"
+
+	pchheader "plpch.h"
+	pchsource "%{prj.name}/src/plpch.cpp"
+
 	files
 	{
-		"%{prj.name}/include/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.h",
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/src/**.hpp"
 	}
 
 	includedirs
 	{
-		"%{prj.name}/include",
-		"%{prj.name}/vendor/spdlog/include"
+		"%{prj.name}/src",
+		"%{prj.name}/vendor/spdlog/include",
+		"%{prj.name}/vendor/eigen/Eigen"
 	}
+
+	filter "system:windows"
+		systemversion "latest"
+
+		defines
+		{
+			"PL_PLATFORM_WINDOWS"
+		}
 
 	filter "configurations:Debug"
 		defines "PL_DEBUG"
@@ -44,26 +59,40 @@ project "PlumLearn.Test"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("build/" .. outputdir .. "/%{prj.name}")
 
-	pchheader "tpch.h"
-	pchsource "%{prj.name}/src/tpch.cpp"
+	defines "PL_INTERNAL"
 
 	files
 	{
-		"%{prj.name}/include/**.h",
+		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
 		"%{prj.name}/vendor/catch2/**.hpp"
 	}
 
 	includedirs
 	{
-		"%{prj.name}/include",
-		"%{prj.name}/vendor/catch2/"
+		"%{prj.name}/src",
+		"%{prj.name}/vendor/catch2/",
+		"PlumLearn/src",
+		"PlumLearn/vendor/spdlog/include",
+		"PlumLearn/vendor/eigen/Eigen"
 	}
 
 	links
 	{
 		"PlumLearn"
 	}
+
+	defines "PL_DEBUG"
+	runtime "Debug"
+	symbols "on"
+
+	filter "system:windows"
+		systemversion "latest"
+
+		defines
+		{
+			"PL_PLATFORM_WINDOWS"
+		}
 
 project "Sandbox"
 	location "Sandbox"
@@ -76,19 +105,29 @@ project "Sandbox"
 
 	files
 	{
-		"%{prj.name}/include/**.h",
+		"%{prj.name}/src/**.h",
+		"%{prj.name}/src/**.hpp",
 		"%{prj.name}/src/**.cpp"
 	}
 
 	includedirs
 	{
-		"%{prj.name}/include"
+		"%{prj.name}/src",
+		"PlumLearn/src"
 	}
 
 	links
 	{
 		"PlumLearn"
 	}
+
+	filter "system:windows"
+		systemversion "latest"
+
+		defines
+		{
+			"PL_PLATFORM_WINDOWS"
+		}
 
 	filter "configurations:Debug"
 		defines "PL_DEBUG"
