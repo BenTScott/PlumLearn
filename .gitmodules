@@ -1,6 +1,6 @@
 [submodule "PlumLearn\\vendor\\spdlog"]
-	path = PlumLearn\\vendor\\spdlog
+	path = PlumLearn/vendor/spdlog
 	url = https://github.com/gabime/spdlog.git
 [submodule "PlumLearn\\vendor\\eigen"]
-	path = PlumLearn\\vendor\\eigen
+	path = PlumLearn/vendor/eigen
 	url = https://github.com/eigenteam/eigen-git-mirror.git

@@ -71,9 +71,13 @@ namespace PlumLearn
 		void UpdateOnBatch(std::vector<FeatureLabelPair>& training_data, double learning_rate);
 		std::vector<std::shared_ptr<NeuronLayer>> layers;
 		void Feedforward(std::vector<double> features);
+<<<<<<< HEAD
 		double dropout_rate = 0;
 		bool d_out = false;
 		CostFunction cost_function = CostFunction::Cross_Entropy;
 
+=======
+		double dropout_rate = 0.0;
+>>>>>>> 18488e2079cecb7e4386ebab0166f1c022de5a41
 	};
 }

@@ -7,3 +7,5 @@
 *.filters
 *.vcxproj
 *.exe
+/.vscode
+**/Makefile
