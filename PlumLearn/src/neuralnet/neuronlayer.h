@@ -2,7 +2,7 @@
 
 #include <vector>
 #include <memory>
-#include "activationfunctions.h"
+#include "activationfunctionhelper.h"
 #include <Core>
 
 namespace PlumLearn
@@ -11,7 +11,7 @@ namespace PlumLearn
 	class NeuronLayer
 	{
 	public:
-		NeuronLayer(unsigned int n_neurons, ActivationFunctions::Enum fn)
+		NeuronLayer(unsigned int n_neurons, ActivationFunction fn)
 			:	n_neurons(n_neurons),
 				fn(fn),
 				is_input(false),
@@ -23,7 +23,7 @@ namespace PlumLearn
 
 		NeuronLayer(unsigned int n_neurons)
 			:	n_neurons(n_neurons),
-				fn(ActivationFunctions::Null),
+				fn(ActivationFunction::Null),
 				is_input(true),
 				dC_db(Eigen::VectorXd::Zero(n_neurons)),
 				values(Eigen::VectorXd::Zero(n_neurons)),
@@ -42,7 +42,7 @@ namespace PlumLearn
 	protected:
 		//std::vector<Neuron> neurons;
 		unsigned int n_neurons;
-		ActivationFunctions::Enum fn;
+		ActivationFunction fn;
 
 		struct ConnectedLayer
 		{

@@ -1,6 +1,6 @@
 #include "plpch.h"
 #include "neuronlayer.h"
-#include "utils/activationfunctionutils.h"
+#include "activationfunctionhelper.h"
 #include "utils/range.hpp"
 
 using namespace Eigen;
@@ -21,8 +21,8 @@ namespace PlumLearn
 			{
 				raw += layer.weights * layer.ptr->values;
 			}
-			this->values = ApplyFunction(raw, fn);
-			this->derivative_values = ApplyFunctionDerivative(raw, fn);
+			this->values = ActivationFunctionHelper::ApplyFunction(raw, fn);
+			this->derivative_values = ActivationFunctionHelper::ApplyFunctionDerivative(raw, fn);
 		}
 	}
 

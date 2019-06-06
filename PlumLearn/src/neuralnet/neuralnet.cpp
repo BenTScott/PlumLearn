@@ -1,7 +1,6 @@
 #include "plpch.h"
 #include "neuralnet.h"
 #include "neuronlayer.h"
-#include "activationfunctions.h"
 #include <random>
 #include <tuple>
 
@@ -37,7 +36,7 @@ namespace PlumLearn
 		}
 	}
 
-	NeuralNet& NeuralNet::AddLayer(int n_neurons, ActivationFunctions::Enum fn)
+	NeuralNet& NeuralNet::AddLayer(int n_neurons, ActivationFunction fn)
 	{
 		std::shared_ptr<NeuronLayer> layer_ptr(new NeuronLayer(n_neurons, fn));
 		layers.push_back(layer_ptr);
@@ -48,13 +47,30 @@ namespace PlumLearn
 	std::vector<double> NeuralNet::Evaluate(std::vector<double> features)
 	{
 		this->Feedforward(features);
-		return layers.back()->GetValues();
+		auto out = layers.back()->GetValues();
+		if (d_out)
+		{
+			std::transform(out.begin(), out.end(), out.begin(), [](double a) { return a < 0.5 ? 0.0 : 1.0; });
+		}
+		return out;
 	}
 
 	void NeuralNet::ApplyDropout(double dropout_rate)
 	{
 		PL_CORE_ASSERT(dropout_rate >= 0 && dropout_rate < 1, "Dropout rate must be between 0 and 1.");
 		this->dropout_rate = dropout_rate;
+	}
+
+	NeuralNet& NeuralNet::DiscreteOutput(bool discrete_output)
+	{
+		d_out = discrete_output;
+		return *this;
+	}
+
+	NeuralNet& NeuralNet::SetCostFunction(CostFunction cost_function)
+	{
+		this->cost_function = cost_function;
+		return *this;
 	}
 
 	void NeuralNet::Feedforward(std::vector<double> features)

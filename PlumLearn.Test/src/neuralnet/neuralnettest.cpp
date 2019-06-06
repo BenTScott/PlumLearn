@@ -5,7 +5,7 @@ using namespace PlumLearn;
 
 TEST_CASE("Can create a neural network and perform SGD")
 {
-	auto nn = NeuralNet(5).AddLayer(10).AddLayer(2, ActivationFunctions::Softmax);
+	auto nn = NeuralNet(5).AddLayer(10).AddLayer(2, ActivationFunction::Softmax);
 	std::vector<double> zeros({ 1, 1, 1, 1, 1 });
 	std::vector<double> ones({ 0, 0, 0, 0, 0 });
 	std::vector<double> label1({ 1, 0 });
@@ -23,7 +23,7 @@ TEST_CASE("Can create a neural network and perform SGD")
 
 TEST_CASE("Can evaluate a single test feature")
 {
-	auto nn = NeuralNet(5).AddLayer(10).AddLayer(2, ActivationFunctions::Softmax);
+	auto nn = NeuralNet(5).AddLayer(10).AddLayer(2, ActivationFunction::Softmax);
 	auto eval = nn.Evaluate({ 1, 2, 3, 4, 5 });
 	REQUIRE(std::any_of(eval.begin(), eval.end(), [](double i) { return i != 0; }));
 }

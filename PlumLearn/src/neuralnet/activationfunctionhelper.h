@@ -1,27 +1,22 @@
 #pragma once
 #include <functional>
 #include <algorithm>
+#include <Core>
+#include "neuralnetenums.h"
 
 #define _USE_MATH_DEFINES
 #include <math.h>
 
 namespace PlumLearn
 {
-	class ActivationFunctions
+	class ActivationFunctionHelper
 	{
 	public:
-		enum Enum
-		{
-			Null,
-			Logistic,
-			Relu,
-			Softmax,
-			TanH,
-			LeakyRelu
-		};
+		static const std::function<double(double)>& GetFunction(ActivationFunction function_type);
+		static const std::function<double(double)>& GetFunctionDerivative(ActivationFunction function_type);
 
-		static const std::function<double(double)>& GetFunction(Enum function_type);
-		static const std::function<double(double)>& GetFunctionDerivative(Enum function_type);
+		static Eigen::VectorXd ApplyFunction(Eigen::VectorXd vector, ActivationFunction function);
+		static Eigen::VectorXd ApplyFunctionDerivative(Eigen::VectorXd vector, ActivationFunction function);
 
 	private:
 		static const std::function<double(double)> logistic_fn;

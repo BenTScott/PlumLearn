@@ -3,4 +3,5 @@
 
 #include "core/core.h"
 #include "neuralnet/neuralnet.h"
-#include "neuralnet/activationfunctions.h"
+#include "neuralnet/neuralnetenums.h"
+#include "datautils/csvdatahelper.h"
