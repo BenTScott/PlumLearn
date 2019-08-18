@@ -28,7 +28,7 @@ TEST_CASE("Assigning too few does not throw")
 TEST_CASE("Can connect two layers and perform learning operations")
 {
 	auto layer1 = std::make_shared<NeuronLayer>(10);
-	auto layer2 = NeuronLayer(5, ActivationFunctions::LeakyRelu);
+	auto layer2 = NeuronLayer(5, ActivationFunction::LeakyRelu);
 	REQUIRE_NOTHROW(layer2.Connect(layer1));
 
 	std::vector<double> vals1 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };

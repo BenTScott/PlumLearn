@@ -86,9 +86,15 @@ project "PlumLearn.Test"
 		"PlumLearn"
 	}
 
-	defines "PL_DEBUG"
-	runtime "Debug"
-	symbols "on"
+	filter "configurations:Debug"
+		defines "PL_DEBUG"
+		runtime "Debug"
+		symbols "on"
+
+	filter "configurations:Release"
+		defines "PL_RELEASE"
+		runtime "Release"
+		optimize "on"
 
 	filter "system:windows"
 		systemversion "latest"
